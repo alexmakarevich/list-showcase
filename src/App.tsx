@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { List } from "@material-ui/core";
+import { ListItemContextProvider, useListItemContext } from "./data/item/Item";
+import { SomeList } from "./data/list/SomeList";
+import { ListOfLists } from "./data/list/ListOfLists";
+import { ListContextProvider } from "./data/list/list";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ListItemContextProvider>
+        <ListContextProvider>
+          <ListOfLists />
+          <SomeList />
+        </ListContextProvider>
+      </ListItemContextProvider>
     </div>
   );
 }
