@@ -1,4 +1,3 @@
-import { colors } from "@material-ui/core";
 import { ReactNode, useState } from "react";
 import { v4 as uuid } from "uuid";
 import { createContextDefined } from "../../utils/hooks";
@@ -27,7 +26,7 @@ export const initialLists: ListData[] = [
 
 export const listDefault = () => ({
   id: uuid(),
-  title: "",
+  title: "Neue Liste",
   color: randomColor(),
 });
 
