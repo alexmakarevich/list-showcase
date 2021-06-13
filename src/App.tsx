@@ -6,8 +6,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams,
   useLocation,
   useHistory,
   matchPath,
@@ -33,20 +31,17 @@ function App() {
 export default App;
 
 const Home = () => {
+  const history = useHistory();
   return (
-    <Button color={"primary"} variant={"contained"}>
+    <Button
+      color={"primary"}
+      variant={"contained"}
+      onClick={() => history.push("/lists")}
+    >
       Start
     </Button>
   );
 };
-
-const ListWrapper = () => {
-  const { listId } = useParams<{ listId: string | undefined }>();
-  const { all } = useListContext();
-  const list = all.find((list) => list.id === listId);
-  return list ? <SomeList list={list} /> : <>list not found</>;
-};
-
 const AppRoutes = () => {
   const history = useHistory();
 
@@ -66,31 +61,31 @@ const AppRoutes = () => {
     <Container
       style={{
         padding: 20,
-        background: list?.color ?? "darkgray",
+        background: list?.color ?? pathname === "/" ? "darkgray" : "lightgray",
         height: "100vh",
         overflowY: "scroll",
       }}
     >
       {pathname !== "/" && (
         <div style={{ textAlign: "left" }}>
-          <Link to={backPathname}>
-            <Button color={"primary"} variant={"contained"}>
-              Zurück
-            </Button>
-          </Link>
+          <Button
+            color={"primary"}
+            variant={"contained"}
+            onClick={() => history.push(backPathname)}
+          >
+            Zurück
+          </Button>
         </div>
       )}
       <Switch>
         <Route path="/lists/:listId">
-          <ListWrapper />
+          {list ? <SomeList list={list} /> : <>list not found</>}
         </Route>
         <Route path="/lists">
           <ListOfLists />
         </Route>
         <Route path="/">
-          <Link to="/lists">
-            <Home />
-          </Link>
+          <Home />
         </Route>
       </Switch>
     </Container>
