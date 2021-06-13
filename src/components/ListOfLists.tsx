@@ -36,9 +36,8 @@ export const ListOfLists = () => {
               <Card style={{ padding: 20, background: list.color }}>
                 <TextField
                   value={list.title}
+                  hiddenLabel={true}
                   onChange={(e) => update({ ...list, title: e.target.value })}
-                  label="Titel"
-                  fullWidth
                   onClick={(e) => e.stopPropagation()}
                 />
                 <List>
