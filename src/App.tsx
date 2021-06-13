@@ -61,7 +61,8 @@ const AppRoutes = () => {
     <Container
       style={{
         padding: 20,
-        background: list?.color ?? pathname === "/" ? "darkgray" : "lightgray",
+        background:
+          list?.color ?? (pathname === "/" ? "darkgray" : "lightgray"),
         height: "100vh",
         overflowY: "scroll",
       }}
